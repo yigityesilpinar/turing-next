@@ -1,0 +1,1 @@
+export { departmentReducer } from './reducers';

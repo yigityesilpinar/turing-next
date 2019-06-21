@@ -1,0 +1,1 @@
+export { customerReducer } from './reducers';
