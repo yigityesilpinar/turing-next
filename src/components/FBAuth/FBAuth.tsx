@@ -1,20 +1,20 @@
 import React from 'react';
 
-import { Button } from './styled';
+import { Button, Text } from './styled';
+import { FBIcon } from './static';
+import { IFBAuth } from './types';
 import useFacebookSDK from './hooks/useFacebookSDK';
 import useFacebookLogin from './hooks/useFacebookLogin';
 
-const FacebookAuth: React.FC = () => {
+const FBAuth: React.FC<IFBAuth> = ({ onSuccess, buttonText }) => {
     const loaded = useFacebookSDK();
-    const onSuccess = async (_token: string) => {
-        // TODO
-    };
     const handleClick = useFacebookLogin(onSuccess);
     return (
         <Button onClick={handleClick} disabled={!loaded}>
-            login with facebook
+            <FBIcon />
+            <Text>{buttonText}</Text>
         </Button>
     );
 };
 
-export default FacebookAuth;
+export default FBAuth;

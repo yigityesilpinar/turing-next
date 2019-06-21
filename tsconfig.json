@@ -24,7 +24,6 @@
       "@common/*": ["common/*"],
       "@components/*": ["components/*"],
       "@config/*": ["config/*"],
-      "@images/*": ["assets/images/*"],
       "@layouts/*": ["layouts/*"],
       "@theme/*": ["config/theme/*"],
       "@utils/*": ["utils/*"],

@@ -42,19 +42,10 @@ const setDepartments = async (ctx: any) => {
     });
 };
 
-const setCustomer = async () => {
-    // // TODO Handle logged in
-    //     // await axios(`${process.env.API_BASE_URL}/customer`).catch(error => {
-    //     //     const apiError: IApiError = error.response.data;
-    //     //     // console.log(apiError.error.code);
-    //     // });
-};
-
 class MyApp extends App {
     static async getInitialProps({ Component, ctx }: any) {
         await setDepartments(ctx);
         await setInitialProducts(ctx);
-        await setCustomer();
         const pageProps = Component.getInitialProps ? await Component.getInitialProps(ctx) : {};
         return { pageProps };
     }

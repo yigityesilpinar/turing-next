@@ -4,13 +4,15 @@ import CommonLink from '@common/Link';
 import { LOGO_HEIGHT, MARGIN_FROM_SIDEBAR } from '@config/global';
 
 export const Link = styled(CommonLink)<IWithActiveProp>`
+    font-family: ${({ theme }) => theme.fonts.montserrat};
     font-weight: ${({ theme }) => theme.fontWeights.bold};
+    font-size: ${({ theme }) => theme.fontSizes.topBar};
     &,
     :active,
     :visited {
-        color: ${props => props.theme.colors.textHeader};
+        color: ${props => props.theme.colors.heading};
         :before {
-            background: ${props => props.theme.colors.textHeader};
+            background: ${props => props.theme.colors.heading};
         }
     }
     margin-right: 80px;
@@ -35,7 +37,7 @@ export const Link = styled(CommonLink)<IWithActiveProp>`
 export const HeaderContainer = styled.div`
     display: flex;
     width: 100%;
-    z-index: 100;
+    z-index: ${({ theme }) => theme.layer.header};
     background-color: ${props => props.theme.colors.backgroundColor};
     align-items: center;
     position: fixed;

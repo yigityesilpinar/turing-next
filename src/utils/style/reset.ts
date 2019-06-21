@@ -137,6 +137,7 @@ export const reset = css`
         white-space: normal;
         background: none;
         line-height: 1;
+        outline: none;
 
         /* Browsers have different default form fonts */
         font-size: 13px;

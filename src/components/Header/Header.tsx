@@ -1,10 +1,12 @@
 import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+
+import { IAppState } from '@store/rootReducer';
+import { setActiveDepartment } from '@store/departments/actions';
+import Auth from '@components/Auth';
 
 import { Logo } from './static';
 import { HeaderContainer, Link } from './styled';
-import { useDispatch, useSelector } from 'react-redux';
-import { IAppState } from '@store/rootReducer';
-import { setActiveDepartment } from '@store/departments/actions';
 
 const Header: React.FC<{}> = () => {
     const { departments, active: activeDepartment } = useSelector<IAppState, IAppState['departmentStore']>(
@@ -33,6 +35,7 @@ const Header: React.FC<{}> = () => {
                     {department.name}
                 </Link>
             ))}
+            <Auth />
         </HeaderContainer>
     );
 };

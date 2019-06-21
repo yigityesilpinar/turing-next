@@ -29,7 +29,7 @@ export const Price = styled.span<IWithActiveProp>`
     ${({ active, theme }) =>
         active
             ? css`
-                  font-size: ${theme.fontSizes.big};
+                  font-size: ${theme.fontSizes.h2};
                   font-weight: ${theme.fontWeights.bold};
                   color: ${theme.colors.active};
               `

@@ -1,9 +1,17 @@
 const Colors = {
     backgroundColor: '#ffffff',
-    link: '#0074D9',
-    textHeader: '#2E2E2E',
-    text: '#B4B4B4',
     active: '#F62F5E',
+    error: '#F62F5E',
+    link: '#0074D9',
+    heading: '#2E2E2E',
+    text: '#B4B4B4',
+    lightBlue: '#6EB2FB',
+    orange: '#F1AD3D',
+    green: '#00D3CA',
+    yellow: '#EFFC90',
+    body: '#6C6C6C',
+    lightGray: '#B4B4B4',
+    white: '#ffffff',
 };
 
 export default Colors;

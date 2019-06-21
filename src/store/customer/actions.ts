@@ -6,3 +6,9 @@ export function setCustomer(customer: ICustomer | null): TCustomerActionTypes {
         customer,
     };
 }
+export function setToken(accessToken: string): TCustomerActionTypes {
+    return {
+        type: ECustomerActions.SET_TOKEN,
+        accessToken,
+    };
+}

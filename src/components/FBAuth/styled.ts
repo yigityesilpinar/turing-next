@@ -1,12 +1,25 @@
 import styled from 'styled-components';
 
-import CommonButton from '@common/Button';
+import CommonText from '@common/Text';
 
-export const Button = styled(CommonButton)`
-    background-color: #1b4293;
-    color: white;
+export const Button = styled.button`
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    justify-content: center;
+    border: 1px solid #d4d4d4;
+    border-radius: 25px;
+    padding: 5px;
+    :hover {
+        background-color: #d4d4d4;
+    }
     :disabled {
         cursor: not-allowed;
         opacity: 0.7;
     }
+    > * {
+        padding-right: 15px;
+    }
 `;
+
+export const Text = styled(CommonText)``;
