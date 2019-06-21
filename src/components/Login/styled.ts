@@ -11,8 +11,9 @@ export const Container = styled.div`
     width: 100%;
 `;
 
-// TODO check/remove all empty styles )``
-export const TextInput = styled(CommonTextInput)``;
+export const TextInput = styled(CommonTextInput)`
+    padding-bottom: 10px;
+`;
 
 export const Text = styled(CommonText)`
     margin: 10px 0;

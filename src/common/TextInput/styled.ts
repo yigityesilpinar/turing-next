@@ -2,6 +2,7 @@ import styled, { css } from 'styled-components';
 
 export const Input = styled.input<{ hasError?: boolean }>`
     border: 1px solid #e1e1e1;
+    color: ${({ theme }) => theme.colors.text};
     padding: 0 20px;
     width: calc(100% - 40px);
     height: 48px;
@@ -18,7 +19,6 @@ export const Label = styled.label`
     text-transform: capitalize;
     flex-wrap: wrap;
     line-height: 2;
-    padding-bottom: 10px;
 `;
 
 export const Required = styled.span`

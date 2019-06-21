@@ -1,0 +1,1 @@
+export { searchsReducer } from './reducers';

@@ -8,12 +8,15 @@ import { departmentReducer } from './departments';
 import { IDepartmentStore } from './departments/types';
 import { categoryReducer } from './categories';
 import { ICategoryStore } from './categories/types';
+import { searchsReducer } from './search';
+import { ISearchsStore } from './search/types';
 
 export interface IAppState {
     productStore: IProductsStore;
     customerStore: ICustomerStore;
     departmentStore: IDepartmentStore;
     categoryStore: ICategoryStore;
+    searchStore: ISearchsStore;
 }
 
 export const rootReducer = combineReducers<IAppState>({
@@ -21,4 +24,5 @@ export const rootReducer = combineReducers<IAppState>({
     customerStore: customerReducer,
     departmentStore: departmentReducer,
     categoryStore: categoryReducer,
+    searchStore: searchsReducer,
 });
