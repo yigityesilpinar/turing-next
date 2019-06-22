@@ -1,11 +1,13 @@
 export enum ECustomerActions {
     SET_CUSTOMER = 'SET_CUSTOMER',
     SET_TOKEN = 'SET_TOKEN',
+    SET_SHOW_AUTH = 'SET_SHOW_AUTH',
 }
 
 export interface ICustomerStore {
     customer: ICustomer | null;
     accessToken: string;
+    showAuth: '' | 'login' | 'register';
 }
 
 interface ISetCustomerAction {
@@ -17,4 +19,9 @@ interface ISetToken {
     accessToken: string;
 }
 
-export type TCustomerActionTypes = ISetCustomerAction | ISetToken;
+interface ISetShowAuth {
+    type: ECustomerActions.SET_SHOW_AUTH;
+    showAuth: '' | 'login' | 'register';
+}
+
+export type TCustomerActionTypes = ISetCustomerAction | ISetToken | ISetShowAuth;

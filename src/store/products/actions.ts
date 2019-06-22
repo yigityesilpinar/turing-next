@@ -7,6 +7,13 @@ export function setProducts(products: Array<IProduct>): TProductActionTypes {
     };
 }
 
+export function setProductInDetail(productInDetail: IProduct | null): TProductActionTypes {
+    return {
+        type: EProductActions.SET_PRODUCT_IN_DETAIL,
+        productInDetail,
+    };
+}
+
 export function addProducts(products: Array<IProduct>): TProductActionTypes {
     return {
         type: EProductActions.ADD_PRODUCTS,

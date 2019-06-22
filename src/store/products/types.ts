@@ -3,10 +3,14 @@ export enum EProductActions {
     ADD_PRODUCTS = 'ADD_PRODUCTS',
     SET_COUNT = 'SET_COUNT',
     SET_PAGE = 'SET_PAGE',
+    SET_ATTRIBUTES = 'SET_ATTRIBUTES',
+    SET_PRODUCT_IN_DETAIL = 'SET_PRODUCT_IN_DETAIL',
 }
 
 export interface IProductsStore {
     products: Array<IProduct>;
+    productInDetail: IProduct | null;
+    attributes: Array<IAttributeWithValues>;
     page: number;
     limit: number;
     count: number;
@@ -29,5 +33,20 @@ interface ISetProductPage {
     type: EProductActions.SET_PAGE;
     page: number;
 }
+interface ISetProductInDetail {
+    type: EProductActions.SET_PRODUCT_IN_DETAIL;
+    productInDetail: IProduct | null;
+}
 
-export type TProductActionTypes = ISetProductsAction | IAddProductsAction | ISetProductCount | ISetProductPage;
+interface ISetAttributes {
+    type: EProductActions.SET_ATTRIBUTES;
+    attributes: Array<IAttributeWithValues>;
+}
+
+export type TProductActionTypes =
+    | ISetProductsAction
+    | IAddProductsAction
+    | ISetProductCount
+    | ISetProductPage
+    | ISetProductInDetail
+    | ISetAttributes;

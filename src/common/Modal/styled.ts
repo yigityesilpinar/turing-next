@@ -18,6 +18,7 @@ export const ModalWrapper = styled.div`
 
 export const ContentWrapper = styled.div`
     min-width: 300px;
+    height: 100%;
 `;
 
 export const CloseWrapper = styled.div`
@@ -25,8 +26,6 @@ export const CloseWrapper = styled.div`
     position: absolute;
     right: 0;
     top: 0;
-    width: 40px;
-    height: 40px;
     justify-content: center;
     align-items: center;
     cursor: pointer;
@@ -42,6 +41,7 @@ export const Content = styled.div`
     width: 100%;
     min-height: 300px;
     padding: 40px 20px;
+    margin-top: 100px;
     > * {
         z-index: ${({ theme }) => theme.layer.justOver};
     }

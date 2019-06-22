@@ -11,6 +11,9 @@ import axios from 'axios';
 import withRedux, { MakeStore } from 'next-redux-wrapper';
 import MainLayout from '@layouts/Main';
 import Header from '@components/Header';
+import productsApi from '@api/products';
+import 'react-toastify/dist/ReactToastify.css';
+import { toast } from 'react-toastify';
 
 const makeStore: MakeStore = (initialState, _options) => {
     const sagaMiddleware = createSagaMiddleware();
@@ -19,20 +22,38 @@ const makeStore: MakeStore = (initialState, _options) => {
     return store;
 };
 
+toast.configure({
+    autoClose: 5000,
+    draggable: false,
+});
+
 const setInitialProducts = async (ctx: any) => {
     const { limit } = ctx.store.getState().productStore;
-    const res = await axios(`${process.env.API_BASE_URL}/products?limit=${limit}`);
-    const productsResponse: IProductsResponse = res.data;
-    // @ts-ignore
-    ctx.store.dispatch({
-        type: EProductActions.SET_PRODUCTS,
-        products: productsResponse.rows,
-    });
-    ctx.store.dispatch({
-        type: EProductActions.SET_COUNT,
-        count: productsResponse.count,
-    });
+    try {
+        const res = await axios(`${process.env.API_BASE_URL}/products?limit=${limit}`);
+        const productsResponse: IProductsResponse = res.data;
+        ctx.store.dispatch({
+            type: EProductActions.SET_PRODUCTS,
+            products: productsResponse.rows,
+        });
+        ctx.store.dispatch({
+            type: EProductActions.SET_COUNT,
+            count: productsResponse.count,
+        });
+    } catch (e) {
+        console.log(e);
+    }
+    try {
+        const attributeWithValues = await productsApi.getAttributeWithValues();
+        ctx.store.dispatch({
+            type: EProductActions.SET_ATTRIBUTES,
+            attributes: attributeWithValues,
+        });
+    } catch (e) {
+        console.log(e);
+    }
 };
+
 const setDepartments = async (ctx: any) => {
     const res = await axios(`${process.env.API_BASE_URL}/departments`);
     // @ts-ignore

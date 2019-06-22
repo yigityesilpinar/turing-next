@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { IAppState } from '@store/rootReducer';
 import { setActiveDepartment } from '@store/departments/actions';
-import Auth from '@components/Auth';
+import HedaerAuth from './Auth';
 import Search from '@components/Search';
 
 import { Logo } from './static';
@@ -37,7 +37,7 @@ const Header: React.FC<{}> = () => {
                 </Link>
             ))}
             <Search />
-            <Auth />
+            <HedaerAuth />
         </HeaderContainer>
     );
 };

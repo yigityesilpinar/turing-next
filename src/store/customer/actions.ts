@@ -12,3 +12,10 @@ export function setToken(accessToken: string): TCustomerActionTypes {
         accessToken,
     };
 }
+
+export function setShowAuth(showAuth: '' | 'login' | 'register'): TCustomerActionTypes {
+    return {
+        type: ECustomerActions.SET_SHOW_AUTH,
+        showAuth,
+    };
+}

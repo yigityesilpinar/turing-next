@@ -20,7 +20,9 @@ export const Text = styled(CommonText)`
     margin: 10px 0;
 `;
 
-export const SubmitBtn = styled(CommonButton)``;
+export const SubmitBtn = styled(CommonButton)`
+    margin-top: 10px;
+`;
 
 export const Heading = styled(CommonH2)``;
 
