@@ -3,8 +3,6 @@ import styled from 'styled-components';
 import Head from 'next/head';
 
 import Products from '@components/Products';
-import ProductDetails from '@components/ProductDetails';
-import Auth from '@components/Auth';
 import Categories from '@components/Categories';
 import { LOGO_HEIGHT, LOGO_WIDTH, MARGIN_FROM_SIDEBAR } from '@config/global';
 
@@ -31,7 +29,6 @@ function IndexPage() {
         <Container>
             <Head>
                 <title>ShopMate</title>
-                <meta name="viewport" content="initial-scale=1.0, width=device-width" key="viewport" />
             </Head>
             <SideBar>
                 <Categories />
@@ -39,9 +36,6 @@ function IndexPage() {
             <Content>
                 <Products />
             </Content>
-            {/*modal components*/}
-            <Auth />
-            <ProductDetails />
         </Container>
     );
 }

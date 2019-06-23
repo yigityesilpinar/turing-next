@@ -1,19 +1,23 @@
 import React from 'react';
-import { rootReducer } from '@store/rootReducer';
-import { rootSaga } from '@store/rootSaga';
-import { EProductActions } from '@store/products/types';
-import { EDepartmentActions } from '@store/departments/types';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import createSagaMiddleware from 'redux-saga';
 import App, { Container } from 'next/app';
 import axios from 'axios';
 import withRedux, { MakeStore } from 'next-redux-wrapper';
+import 'react-toastify/dist/ReactToastify.css';
+import { toast } from 'react-toastify';
+
+import { rootReducer } from '@store/rootReducer';
+import { rootSaga } from '@store/rootSaga';
+import { EProductActions } from '@store/products/types';
+import { EDepartmentActions } from '@store/departments/types';
 import MainLayout from '@layouts/Main';
 import Header from '@components/Header';
 import productsApi from '@api/products';
-import 'react-toastify/dist/ReactToastify.css';
-import { toast } from 'react-toastify';
+import Auth from '@components/Auth';
+import ProductDetails from '@components/ProductDetails';
+import PageView from '@components/PageView';
 
 const makeStore: MakeStore = (initialState, _options) => {
     const sagaMiddleware = createSagaMiddleware();
@@ -80,6 +84,10 @@ class MyApp extends App {
                     <MainLayout>
                         <Header />
                         <Component {...pageProps} />
+                        {/*modal components*/}
+                        <Auth />
+                        <ProductDetails />
+                        <PageView />
                     </MainLayout>
                 </Provider>
             </Container>

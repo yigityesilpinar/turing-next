@@ -7,6 +7,10 @@ export const Container = styled.div`
     cursor: pointer;
 `;
 
+export const NoResult = styled.div`
+    font-size: ${({ theme }) => theme.fontSizes.h2};
+`;
+
 export const PaginationContainer = styled.div`
     display: flex;
     flex-basis: 100%;

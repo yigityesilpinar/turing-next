@@ -4,7 +4,7 @@ import ReactPaginate from 'react-paginate';
 
 import { IAppState } from '@store/rootReducer';
 import Product from './Product';
-import { Container, ListContainer, PaginationContainer } from './styled';
+import { Container, ListContainer, PaginationContainer, NoResult } from './styled';
 import { setPage } from '@store/products/actions';
 
 const Products: React.FC = () => {
@@ -17,7 +17,7 @@ const Products: React.FC = () => {
     };
     return (
         <Container>
-            {count ? (
+            {count && count > limit ? (
                 <PaginationContainer>
                     <ReactPaginate
                         forcePage={page - 1}
@@ -35,6 +35,7 @@ const Products: React.FC = () => {
                     <Product key={product.product_id} {...product} />
                 ))}
             </ListContainer>
+            {count === 0 && <NoResult>Sorry no products found!</NoResult>}
         </Container>
     );
 };
