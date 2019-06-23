@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components';
 
-export const ReverseBtnMixin = css`
+export const reverseBtnMixin = css`
     background-color: ${({ theme }) => theme.colors.white};
     color: ${({ theme }) => theme.colors.active};
 `;

@@ -3,7 +3,6 @@ import { TProductActionTypes, EProductActions, IProductsStore } from './types';
 const initialState: IProductsStore = {
     products: [],
     productInDetail: null,
-    attributes: [],
     limit: 8,
     page: 1,
     count: 0,
@@ -13,8 +12,6 @@ export const productsReducer = (state = initialState, action: TProductActionType
     switch (action.type) {
         case EProductActions.SET_PRODUCTS:
             return Object.assign({}, state, { products: action.products });
-        case EProductActions.SET_ATTRIBUTES:
-            return Object.assign({}, state, { attributes: action.attributes });
         case EProductActions.ADD_PRODUCTS:
             return Object.assign({}, state, { products: [...state.products, ...action.products] });
         case EProductActions.SET_COUNT:

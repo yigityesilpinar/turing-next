@@ -1,0 +1,1 @@
+export { attributesReducer } from './reducers';

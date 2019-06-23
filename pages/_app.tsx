@@ -14,7 +14,6 @@ import { EProductActions } from '@store/products/types';
 import { EDepartmentActions } from '@store/departments/types';
 import MainLayout from '@layouts/Main';
 import Header from '@components/Header';
-import productsApi from '@api/products';
 import Auth from '@components/Auth';
 import ProductDetails from '@components/ProductDetails';
 import PageView from '@components/PageView';
@@ -43,15 +42,6 @@ const setInitialProducts = async (ctx: any) => {
         ctx.store.dispatch({
             type: EProductActions.SET_COUNT,
             count: productsResponse.count,
-        });
-    } catch (e) {
-        console.log(e);
-    }
-    try {
-        const attributeWithValues = await productsApi.getAttributeWithValues();
-        ctx.store.dispatch({
-            type: EProductActions.SET_ATTRIBUTES,
-            attributes: attributeWithValues,
         });
     } catch (e) {
         console.log(e);

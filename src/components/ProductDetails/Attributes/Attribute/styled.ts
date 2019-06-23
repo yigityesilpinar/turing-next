@@ -48,6 +48,6 @@ export const getCustomSelectStyles = (colorsEnabled?: boolean) => {
             backgroundColor: isFocused ? useThemeColor(data.label) : null,
         }),
         // @ts-ignore
-        singleValue: (styles, { data }) => ({ ...styles, ...dot(data.label) }),
+        singleValue: (styles, { data }) => ({ ...styles, ...dot(data.label), padding: '10px' }),
     };
 };
