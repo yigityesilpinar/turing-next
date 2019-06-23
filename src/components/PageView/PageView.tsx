@@ -2,9 +2,10 @@ import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 
 import authApi from '@api/auth';
+import cartApi from '@api/cart';
 import { getItemFromStorage, removeItemFromStorage } from '@utils/storage';
 import { setCustomer, setToken } from '@store/customer/actions';
-import { setCartID } from '@store/cart/actions';
+import { setCart, setCartID } from '@store/cart/actions';
 
 const PageView: React.FC = () => {
     const dispatch = useDispatch();
@@ -25,6 +26,11 @@ const PageView: React.FC = () => {
         if (cartID) {
             try {
                 dispatch(setCartID(cartID));
+                cartApi.getItemsInCart(cartID).then(([res, err]) => {
+                    if (res && res.length && !err) {
+                        dispatch(setCart(res));
+                    }
+                });
             } catch (e) {}
         }
     }, []);

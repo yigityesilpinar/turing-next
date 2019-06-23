@@ -8,7 +8,7 @@ import Search from '@components/Search';
 import { Logo } from './static';
 import HedaerAuth from './Auth';
 import HeaderCart from './Cart';
-import { HeaderContainer, Link } from './styled';
+import { HeaderContainer, Link, RigtMenu } from './styled';
 
 const Header: React.FC<{}> = () => {
     const { departments, active: activeDepartment } = useSelector<IAppState, IAppState['departmentStore']>(
@@ -38,8 +38,10 @@ const Header: React.FC<{}> = () => {
                 </Link>
             ))}
             <Search />
-            <HeaderCart />
-            <HedaerAuth />
+            <RigtMenu>
+                <HeaderCart />
+                <HedaerAuth />
+            </RigtMenu>
         </HeaderContainer>
     );
 };

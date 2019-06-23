@@ -1,6 +1,7 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
+import Router from 'next/router';
 
 import { PRODUCT_IMAGE_PATH } from '@config/global';
 import { IAppState } from '@store/rootReducer';
@@ -21,7 +22,7 @@ import {
 } from './styled';
 import Reviews from './Reviews';
 import Attributes from './Attributes';
-import { setCartID } from '@store/cart/actions';
+import { setCart, setCartID } from '@store/cart/actions';
 
 const ProductDetails: React.FC = () => {
     const productInDetail = useSelector<IAppState, IAppState['productStore']['productInDetail']>(
@@ -46,8 +47,13 @@ const ProductDetails: React.FC = () => {
                 product_id,
             });
             if (res && res.length && !err) {
-                toast.success('Added To Cart');
+                toast.success('Added To Cart, CLICK TO GO TO CART', {
+                    onClick: () => {
+                        Router.push('/cart');
+                    },
+                });
                 dispatch(setProductInDetail(null));
+                dispatch(setCart(res));
             } else {
                 dispatch(setCartID(''));
                 toast.error("Ooops sorry, we can't handle your request at the moment!");
