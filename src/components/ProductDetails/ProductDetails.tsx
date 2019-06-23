@@ -1,11 +1,12 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import Router from 'next/router';
+import { toast } from 'react-toastify';
 
 import { PRODUCT_IMAGE_PATH } from '@config/global';
 import { IAppState } from '@store/rootReducer';
 import { setProductInDetail } from '@store/products/actions';
 import Price from '@common/Price';
+import cartApi from '@api/cart';
 
 import {
     Container,
@@ -20,38 +21,49 @@ import {
 } from './styled';
 import Reviews from './Reviews';
 import Attributes from './Attributes';
-import { addToCart } from '@store/cart/actions';
+import { setCartID } from '@store/cart/actions';
 
 const ProductDetails: React.FC = () => {
     const productInDetail = useSelector<IAppState, IAppState['productStore']['productInDetail']>(
         state => state.productStore.productInDetail,
     );
-    const items = useSelector<IAppState, IAppState['cartStore']['items']>(state => state.cartStore.items);
     const selectedAttributes = useSelector<IAppState, IAppState['attributesStore']['attributes']>(
         state => state.attributesStore.attributes,
     );
+    const cartIDFromStore = useSelector<IAppState, IAppState['cartStore']['cart_id']>(state => state.cartStore.cart_id);
     const dispatch = useDispatch();
     if (!productInDetail) {
         return null;
     }
-    const isInCart = !!items.find(item => item.product_id === productInDetail.product_id);
     const onCloseClick = () => dispatch(setProductInDetail(null));
     const { name, discounted_price, price, thumbnail, description, product_id } = productInDetail;
 
-    const handleAddToCart = () => {
-        if (isInCart) {
-            dispatch(setProductInDetail(null));
-            Router.push('/cart');
-            return;
+    const handleAddToCart = async () => {
+        const addToCart = async (cart_id: ICartIDResponse['cart_id']) => {
+            const [res, err] = await cartApi.addToCart({
+                attributes: selectedAttributes.map(attr => attr.attribute_value).join(' '),
+                cart_id,
+                product_id,
+            });
+            if (res && res.length && !err) {
+                toast.success('Added To Cart');
+                dispatch(setProductInDetail(null));
+            } else {
+                dispatch(setCartID(''));
+                toast.error("Ooops sorry, we can't handle your request at the moment!");
+            }
+        };
+        if (!cartIDFromStore) {
+            const [response, err] = await cartApi.generateCartID();
+            if (!response || err) {
+                toast.error("Ooops sorry, we can't handle your request at the moment!");
+                return;
+            }
+            dispatch(setCartID(response.cart_id));
+            addToCart(response.cart_id);
+        } else {
+            addToCart(cartIDFromStore);
         }
-        dispatch(
-            addToCart({
-                product_id: productInDetail.product_id,
-                product: productInDetail,
-                quantity: 1,
-                attributes: selectedAttributes,
-            }),
-        );
     };
     return (
         <Modal onCloseClick={onCloseClick}>
@@ -66,7 +78,7 @@ const ProductDetails: React.FC = () => {
                         <Price discounted_price={discounted_price} price={price} />
                     </PriceContainer>
                     <Attributes product_id={product_id} />
-                    <AddToCart onClick={handleAddToCart}>{isInCart ? 'Go to Cart' : 'Add to cart'}</AddToCart>
+                    <AddToCart onClick={handleAddToCart}>Add to Cart</AddToCart>
                 </InteractiveContainer>
                 <Reviews product_id={product_id} />
             </Container>

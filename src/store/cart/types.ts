@@ -1,17 +1,13 @@
 export enum ECartActions {
-    ADD_TO_CART = 'ADD_TO_CART',
     REMOVE_FROM_CART = 'REMOVE_FROM_CART',
-    SET_QUANTITY = 'SET_QUANTITY',
     SET_CART = 'SET_CART',
+    SET_CART_ID = 'SET_CART_ID',
+    SET_QUANTITY = 'SET_QUANTITY',
 }
 
 export interface ICartStore {
     items: Array<ICartItem>;
-}
-
-interface IAddToCart {
-    type: ECartActions.ADD_TO_CART;
-    item: ICartItem;
+    cart_id: ICartIDResponse['cart_id'];
 }
 
 interface ISetCart {
@@ -19,14 +15,19 @@ interface ISetCart {
     items: Array<ICartItem>;
 }
 
-interface IRemoveFromCart {
-    type: ECartActions.REMOVE_FROM_CART;
-    product_id: IProduct['product_id'];
+interface ISetCartID {
+    type: ECartActions.SET_CART_ID;
+    cart_id: ICartIDResponse['cart_id'];
 }
 
 interface ISetQuantity {
     type: ECartActions.SET_QUANTITY;
-    productQuantity: IProductQuantity;
+    payload: Pick<ICartItem, 'item_id' | 'quantity'>;
 }
 
-export type TCartActionTypes = IAddToCart | IRemoveFromCart | ISetQuantity | ISetCart;
+interface IRemoveFromCart {
+    type: ECartActions.REMOVE_FROM_CART;
+    item_id: ICartItem['item_id'];
+}
+
+export type TCartActionTypes = IRemoveFromCart | ISetCart | ISetCartID | ISetQuantity;

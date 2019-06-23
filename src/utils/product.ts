@@ -1,5 +1,3 @@
-import { IAppState } from '@store/rootReducer';
-
 export const groupProductAttributes = (attrs: Array<IAttributeInProduct>) =>
     attrs.reduce(
         (acc, { attribute_name, ...rest }) => {
@@ -27,16 +25,3 @@ export const getActualPrice = ({ price, discounted_price }: Pick<IProduct, 'pric
 
 export const getSubTotal = ({ price, quantity }: { price: string; quantity: number }) =>
     (parseFloat(price) * quantity).toFixed(2);
-
-export const getTotal = (items: IAppState['cartStore']['items']) => {
-    let total = 0;
-    items.forEach(item => {
-        const {
-            quantity,
-            product: { discounted_price, price },
-        } = item;
-        const actualPrice = parseFloat(getActualPrice({ price, discounted_price }));
-        total += actualPrice * quantity;
-    });
-    return total.toFixed(2);
-};

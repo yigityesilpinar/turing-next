@@ -1,9 +1,9 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
+import { toast } from 'react-toastify';
 
-import { removeFromCart } from '@store/cart/actions';
 import { CURRENCY, PRODUCT_IMAGE_PATH } from '@config/global';
-import { getActualPrice, getSubTotal } from '@utils/product';
+import cartApi from '@api/cart';
 
 import {
     Container,
@@ -19,23 +19,26 @@ import {
     CloseIcon,
 } from './styled';
 import Quantity from './Quantity';
+import { removeFromCart } from '@store/cart/actions';
 
 const CartItem: React.FC<ICartItem> = item => {
-    const { product, attributes, quantity } = item;
+    const { name, image, price, subtotal, attributes, item_id } = item;
     const dispatch = useDispatch();
-    const handleRemove = () => {
-        dispatch(removeFromCart(product.product_id));
+    const handleRemove = async () => {
+        const [, err] = await cartApi.removeItem(item_id);
+        if (err) {
+            toast.error('Oops sorry we can not remove this item at the moment');
+        } else {
+            dispatch(removeFromCart(item_id));
+        }
     };
-    const actualPrice = getActualPrice({
-        discounted_price: product.discounted_price,
-        price: product.price,
-    });
+
     return (
         <Container>
             <LeftContainer>
-                <Image src={`${PRODUCT_IMAGE_PATH}/${product.thumbnail}`} />
+                <Image src={`${PRODUCT_IMAGE_PATH}/${image}`} />
                 <NameContainer>
-                    <Text>{product.name}</Text>
+                    <Text>{name}</Text>
                     <RemoveBtn onClick={handleRemove}>
                         <CloseIcon src="/static/images/close_icon.png" />
                         remove
@@ -44,23 +47,16 @@ const CartItem: React.FC<ICartItem> = item => {
             </LeftContainer>
             <RightContainer>
                 <AttributesContainer>
-                    {attributes.map(attr => (
-                        <Text key={attr.attribute_name}>
-                            {attr.attribute_name}: {attr.attribute_value}
-                        </Text>
-                    ))}
+                    <Text>{attributes}</Text>
                 </AttributesContainer>
                 <Quantity {...item} />
                 <Price>
                     {CURRENCY}
-                    {actualPrice}
+                    {price}
                 </Price>
                 <SubTotal>
                     {CURRENCY}
-                    {getSubTotal({
-                        price: actualPrice,
-                        quantity,
-                    })}
+                    {subtotal}
                 </SubTotal>
             </RightContainer>
         </Container>

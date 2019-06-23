@@ -1,29 +1,37 @@
 import React from 'react';
-
-import { Container, QuantityDisplay, Decrease, Increase } from './styled';
 import { useDispatch } from 'react-redux';
+import { toast } from 'react-toastify';
+
+import cartApi from '@api/cart';
 import { setQuantity } from '@store/cart/actions';
 
-const CartItem: React.FC<ICartItem> = ({ quantity, product_id }) => {
+import { Container, QuantityDisplay, Decrease, Increase } from './styled';
+
+const CartItem: React.FC<ICartItem> = ({ quantity, item_id }) => {
     const dispatch = useDispatch();
-    const handleIncrease = () =>
-        dispatch(
-            setQuantity({
-                quantity: quantity + 1,
-                product_id,
-            }),
-        );
+    const handleChange = async (newQuantity: typeof quantity) => {
+        const [res, err] = await cartApi.updateItem({
+            item_id,
+            quantity: newQuantity,
+        });
+        if (res && !err) {
+            dispatch(
+                setQuantity({
+                    quantity: newQuantity,
+                    item_id,
+                }),
+            );
+        } else {
+            toast.error('oops sorry sth went wrong!');
+        }
+    };
+    const handleIncrease = () => handleChange(quantity + 1);
 
     const handleDecrease = () => {
         if (quantity < 2) {
             return;
         }
-        dispatch(
-            setQuantity({
-                quantity: quantity - 1,
-                product_id,
-            }),
-        );
+        handleChange(quantity - 1);
     };
 
     return (

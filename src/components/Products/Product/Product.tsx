@@ -9,10 +9,10 @@ import { Container, Content, Name, Image, PriceContainer, Description } from './
 
 const Product: React.FC<IProduct> = product => {
     const { name, discounted_price, price, thumbnail, description } = product;
-        const dispatch = useDispatch();
-        const handleClick = () => {
-            dispatch(setProductInDetail(product));
-        };
+    const dispatch = useDispatch();
+    const handleClick = () => {
+        dispatch(setProductInDetail(product));
+    };
     return (
         <Container onClick={handleClick}>
             <Content>

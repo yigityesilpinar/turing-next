@@ -9,8 +9,12 @@ const ListHeader: React.FC = () => {
             <RightContainer>
                 <Heading width="22%">Attributes</Heading>
                 <Heading width="22%">Quantity</Heading>
-                <Heading width="22%" rightJustify>Price</Heading>
-                <Heading width="22%" rightJustify>Sub Total</Heading>
+                <Heading width="22%" rightJustify>
+                    Price
+                </Heading>
+                <Heading width="22%" rightJustify>
+                    Sub Total
+                </Heading>
             </RightContainer>
         </Container>
     );

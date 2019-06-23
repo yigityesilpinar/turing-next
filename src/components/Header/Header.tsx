@@ -3,10 +3,11 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { IAppState } from '@store/rootReducer';
 import { setActiveDepartment } from '@store/departments/actions';
-import HedaerAuth from './Auth';
 import Search from '@components/Search';
 
 import { Logo } from './static';
+import HedaerAuth from './Auth';
+import HeaderCart from './Cart';
 import { HeaderContainer, Link } from './styled';
 
 const Header: React.FC<{}> = () => {
@@ -37,6 +38,7 @@ const Header: React.FC<{}> = () => {
                 </Link>
             ))}
             <Search />
+            <HeaderCart />
             <HedaerAuth />
         </HeaderContainer>
     );

@@ -15,6 +15,7 @@ const Auth: React.FC = () => {
         dispatch(setCustomer(null));
         dispatch(setToken(''));
     };
+
     if (customer) {
         return (
             <Container>

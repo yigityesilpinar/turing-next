@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 import CommonH2 from '@common/H2';
+import CommonButton from '@common/Button';
 
 export const Container = styled.div`
     display: flex;
@@ -21,4 +22,11 @@ export const Heading = styled(CommonH2)`
 export const Total = styled(CommonH2)`
     color: ${({ theme }) => theme.colors.active};
     margin-left: auto;
+`;
+
+export const EmptyButton = styled(CommonButton)`
+    width: 100px;
+    margin-bottom: 10px;
+    font-size: ${({ theme }) => theme.fontSizes.small};
+    padding: 10px;
 `;

@@ -1,12 +1,5 @@
 import { ECartActions, TCartActionTypes } from './types';
 
-export function addToCart(item: ICartItem): TCartActionTypes {
-    return {
-        type: ECartActions.ADD_TO_CART,
-        item,
-    };
-}
-
 export function setCart(items: Array<ICartItem>): TCartActionTypes {
     return {
         type: ECartActions.SET_CART,
@@ -14,15 +7,23 @@ export function setCart(items: Array<ICartItem>): TCartActionTypes {
     };
 }
 
-export function removeFromCart(product_id: IProduct['product_id']): TCartActionTypes {
+export function setCartID(cart_id: ICartIDResponse['cart_id']): TCartActionTypes {
     return {
-        type: ECartActions.REMOVE_FROM_CART,
-        product_id,
+        type: ECartActions.SET_CART_ID,
+        cart_id,
     };
 }
-export function setQuantity(productQuantity: IProductQuantity): TCartActionTypes {
+
+export function setQuantity(payload: Pick<ICartItem, 'item_id' | 'quantity'>): TCartActionTypes {
     return {
         type: ECartActions.SET_QUANTITY,
-        productQuantity,
+        payload,
+    };
+}
+
+export function removeFromCart(item_id: ICartItem['item_id']): TCartActionTypes {
+    return {
+        type: ECartActions.REMOVE_FROM_CART,
+        item_id,
     };
 }

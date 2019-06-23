@@ -13,6 +13,6 @@ export const Btn = styled.button`
     font-family: ${({ theme }) => theme.fonts.montserrat};
     border-radius: 25px;
     padding: 10px;
-    min-width: 200px;
+    width: 200px;
     cursor: pointer;
 `;
