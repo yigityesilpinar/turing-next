@@ -1,22 +1,21 @@
 import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
 import Link from 'next/link';
 import { toast } from 'react-toastify';
-import { useDispatch, useSelector } from 'react-redux';
 
 import AddressForm from '@components/AddressForm';
 import { IAppState } from '@store/rootReducer';
 import authApi from '@api/auth';
 import { filterFields } from '@components/AddressForm/utils';
-import { setCheckoutStep } from '@store/checkout/actions';
+import useLoggedInOnly from '@hooks/useLoggedInOnly';
 
-import { Container, BackButton, BottomContainer, NextButton } from './styled';
+import { Container, BackButton, BottomContainer, UpdateButton, Heading } from './styled';
 
-const Delivery: React.FC = () => {
+const Profile: React.FC = () => {
+    useLoggedInOnly('/');
     const { customer, accessToken } = useSelector<IAppState, IAppState['customerStore']>(state => state.customerStore);
-    const currentStep = useSelector<IAppState, IAppState['checoutStore']['step']>(state => state.checoutStore.step);
-    const dispatch = useDispatch();
     const [error, setError] = useState<IErrorResponse | undefined>();
-    if (!customer || currentStep !== 1) {
+    if (!customer) {
         return null;
     }
 
@@ -30,7 +29,6 @@ const Delivery: React.FC = () => {
             accessToken,
         );
         if (err) {
-            console.log(err);
             // validation error
             if (err.status === 400) {
                 setError(err);
@@ -39,20 +37,21 @@ const Delivery: React.FC = () => {
             toast.error('Oops sorry we can not do this now!');
             return;
         }
-        dispatch(setCheckoutStep(currentStep + 1));
+        toast.success('Your profile data Successfuly updated');
     };
 
     return (
         <Container>
+            <Heading>Update Profile Info</Heading>
             <AddressForm error={error} setError={setError} />
             <BottomContainer>
-                <Link href="/cart">
-                    <BackButton>Back</BackButton>
+                <Link href="/">
+                    <BackButton>Back to Shopping</BackButton>
                 </Link>
-                <NextButton onClick={handleNextClick}>Next</NextButton>
+                <UpdateButton onClick={handleNextClick}>Update</UpdateButton>
             </BottomContainer>
         </Container>
     );
 };
 
-export default Delivery;
+export default Profile;

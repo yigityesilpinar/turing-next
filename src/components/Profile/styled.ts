@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 import CommonButton from '@common/Button';
 import { reverseBtnMixin } from '@common/Button/styled';
+import CommonH2 from '@common/H2';
 
 export const Container = styled.div`
     display: flex;
@@ -19,6 +20,10 @@ export const BottomContainer = styled.div`
 export const BackButton = styled(CommonButton)`
     ${reverseBtnMixin}
 `;
-export const NextButton = styled(CommonButton)`
+export const UpdateButton = styled(CommonButton)`
     margin-left: auto;
+`;
+
+export const Heading = styled(CommonH2)`
+    margin-bottom: 30px;
 `;

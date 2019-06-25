@@ -4,6 +4,7 @@ import Head from 'next/head';
 import Container from '@common/PageContainer';
 import SideBar from '@common/SideBar';
 import Content from '@common/Content';
+import Profile from '@components/Profile';
 
 function IndexPage() {
     return (
@@ -12,7 +13,9 @@ function IndexPage() {
                 <title>Profile</title>
             </Head>
             <SideBar />
-            <Content>Profile Page</Content>
+            <Content>
+                <Profile />
+            </Content>
         </Container>
     );
 }

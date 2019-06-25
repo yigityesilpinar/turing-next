@@ -17,7 +17,7 @@ import { Container, Heading } from './styled';
 const Checkout: React.FC = () => {
     const currentStep = useSelector<IAppState, IAppState['checoutStore']['step']>(state => state.checoutStore.step);
     const items = useSelector<IAppState, IAppState['cartStore']['items']>(state => state.cartStore.items);
-    useLoggedInOnly();
+    useLoggedInOnly('/cart');
 
     if (currentStep !== 4 && !items.length) {
         return <EmptyCart />;

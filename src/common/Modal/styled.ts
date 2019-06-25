@@ -31,7 +31,9 @@ export const CloseWrapper = styled.div`
     cursor: pointer;
 `;
 
-export const CloseIcon = styled(CommonImage)``;
+export const CloseIcon = styled(CommonImage)`
+    margin-right: 30px;
+`;
 
 export const Content = styled.div`
     display: flex;

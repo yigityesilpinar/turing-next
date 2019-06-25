@@ -35,7 +35,6 @@ export const DepartmentsContainer = styled.div`
 `;
 
 export const LogoContainer = styled.div`
-
     width: 20%;
     svg{
     width: 100%;

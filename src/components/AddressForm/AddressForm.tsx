@@ -1,29 +1,16 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { toast } from 'react-toastify';
-import Link from 'next/link';
 
 import { IAppState } from '@store/rootReducer';
 import authApi from '@api/auth';
 import { setCustomer, updateCustomer } from '@store/customer/actions';
+import { IAddressForm } from '@components/AddressForm/types';
 
-import { Container, TextInput, BackButton, BottomContainer, NextButton, Error } from './styled';
+import { Container, TextInput, Error } from './styled';
 import { textFileds, aliases } from './static';
-import { setCheckoutStep } from '@store/checkout/actions';
 
-const filterFields = (customer: ICustomer) => {
-    let fields = {};
-    textFileds.forEach(key => {
-        //@ts-ignore
-        fields[key] = customer[key] || '';
-    });
-    return fields;
-};
-
-const AddressForm: React.FC = () => {
+const AddressForm: React.FC<IAddressForm> = ({ error, setError }) => {
     const { customer, accessToken } = useSelector<IAppState, IAppState['customerStore']>(state => state.customerStore);
-    const [error, setError] = useState<IErrorResponse | undefined>();
-    const currentStep = useSelector<IAppState, IAppState['checoutStore']['step']>(state => state.checoutStore.step);
     const dispatch = useDispatch();
     useEffect(() => {
         if (customer && !customer.hasOwnProperty('country')) {
@@ -34,7 +21,7 @@ const AddressForm: React.FC = () => {
             });
         }
     }, [customer]);
-    if (!customer || currentStep !== 1) {
+    if (!customer) {
         return null;
     }
     const handleChange = (fieldName: keyof typeof customer) => (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -49,27 +36,6 @@ const AddressForm: React.FC = () => {
         );
     };
     const hasError = (fieldName: keyof typeof customer) => error && error.field.includes(fieldName);
-    const handleNextClick = async () => {
-        const [, err] = await authApi.updateAddress(
-            // @ts-ignore
-            {
-                ...filterFields(customer),
-                shipping_region_id: customer.shipping_region_id,
-            },
-            accessToken,
-        );
-        if (err) {
-            console.log(err);
-            // validation error
-            if (err.status === 400) {
-                setError(err);
-                return;
-            }
-            toast.error('Oops sorry we can not do this now!');
-            return;
-        }
-        dispatch(setCheckoutStep(currentStep + 1));
-    };
     return (
         <Container>
             {textFileds.map(field => (
@@ -88,12 +54,6 @@ const AddressForm: React.FC = () => {
             ))}
 
             {error && <Error>{error.message}</Error>}
-            <BottomContainer>
-                <Link href="/cart">
-                    <BackButton>Back</BackButton>
-                </Link>
-                <NextButton onClick={handleNextClick}>Next</NextButton>
-            </BottomContainer>
         </Container>
     );
 };
