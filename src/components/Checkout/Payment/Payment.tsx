@@ -32,6 +32,7 @@ const Payment: React.FC = props => {
     const { customer, accessToken } = useSelector<IAppState, IAppState['customerStore']>(state => state.customerStore);
     const { cart_id } = useSelector<IAppState, IAppState['cartStore']>(state => state.cartStore);
     const currentStep = useSelector<IAppState, IAppState['checoutStore']['step']>(state => state.checoutStore.step);
+    const isMobile = useSelector<IAppState, IAppState['appStore']['isMobile']>(state => state.appStore.isMobile);
 
     const handlePay = async () => {
         const { stripe } = props as InjectedProps;
@@ -67,7 +68,11 @@ const Payment: React.FC = props => {
                     <CardWrapper completed={completed}>
                         <CardElement
                             style={{
-                                base: { fontSize: '30px', iconColor: Colors.green, color: Colors.black },
+                                base: {
+                                    fontSize: isMobile ? '20px' : '30px',
+                                    iconColor: Colors.green,
+                                    color: Colors.black,
+                                },
                             }}
                             onChange={handleCardChange}
                         />

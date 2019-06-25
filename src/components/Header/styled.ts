@@ -5,7 +5,7 @@ import { BREAKPOINTS } from '@config/media';
 
 export const HeaderContainer = styled.div`
     display: flex;
-    width: 100%;
+    width: 100vw;
     max-width: ${MAX_APP_WIDTH}px;
     z-index: ${({ theme }) => theme.layer.header};
     background-color: ${props => props.theme.colors.backgroundColor};

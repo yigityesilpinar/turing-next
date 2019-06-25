@@ -893,6 +893,11 @@
     "@types/react" "*"
     hoist-non-react-statics "^3.3.0"
 
+"@types/ismobilejs@^0.4.1":
+  version "0.4.1"
+  resolved "https://registry.yarnpkg.com/@types/ismobilejs/-/ismobilejs-0.4.1.tgz#d8bf8b139d3e47ae6afa1d4bca57bbc5a786cc9e"
+  integrity sha512-h7d/EWxHjRNY/VuIWBsciHahuIRmSVvtK+34cal0m/UBN75wcuEXxzfn91PRr7iyyJqMccW+oiwp6T+T9khamQ==
+
 "@types/lodash@^4.14.134":
   version "4.14.134"
   resolved "https://registry.yarnpkg.com/@types/lodash/-/lodash-4.14.134.tgz#9032b440122db3a2a56200e91191996161dde5b9"
@@ -3529,6 +3534,11 @@ isexe@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/isexe/-/isexe-2.0.0.tgz#e8fbf374dc556ff8947a10dcb0572d633f2cfa10"
   integrity sha1-6PvzdNxVb/iUehDcsFctYz8s+hA=
+
+ismobilejs@^0.5.2:
+  version "0.5.2"
+  resolved "https://registry.yarnpkg.com/ismobilejs/-/ismobilejs-0.5.2.tgz#e81bacf6187c532ad8348355f4fecd6e6adfdce1"
+  integrity sha512-ta9UdV60xVZk/ZafFtSFslQaE76SvNkcs1r73d2PVR21zVzx9xuYv9tNe4MxA1NN7WoeCc2RjGot3Bz1eHDx3Q==
 
 isobject@^2.0.0:
   version "2.1.0"

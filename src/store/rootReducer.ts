@@ -16,6 +16,9 @@ import { attributesReducer } from './attributes';
 import { IAttributesStore } from './attributes/types';
 import { checkoutReducer } from './checkout';
 import { ICheckoutStore } from './checkout/types';
+// global store for app, stuff like isMobile
+import { appReducer } from './app';
+import { IAppStore } from './app/types';
 
 export interface IAppState {
     productStore: IProductsStore;
@@ -26,6 +29,7 @@ export interface IAppState {
     cartStore: ICartStore;
     attributesStore: IAttributesStore;
     checoutStore: ICheckoutStore;
+    appStore: IAppStore;
 }
 
 export const rootReducer = combineReducers<IAppState>({
@@ -37,4 +41,5 @@ export const rootReducer = combineReducers<IAppState>({
     cartStore: cartReducer,
     attributesStore: attributesReducer,
     checoutStore: checkoutReducer,
+    appStore: appReducer,
 });

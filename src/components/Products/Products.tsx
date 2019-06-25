@@ -11,6 +11,7 @@ const Products: React.FC = () => {
     const { products, count, limit, page } = useSelector<IAppState, IAppState['productStore']>(
         state => state.productStore,
     );
+    const isMobile = useSelector<IAppState, IAppState['appStore']['isMobile']>(state => state.appStore.isMobile);
     const dispatch = useDispatch();
     const handlePageChange = ({ selected }: { selected: number }) => {
         dispatch(setPage(selected + 1));
@@ -24,9 +25,9 @@ const Products: React.FC = () => {
                         previousLabel={'<'}
                         nextLabel={'>'}
                         pageCount={count / limit}
-                        pageRangeDisplayed={5}
+                        pageRangeDisplayed={isMobile ? 2 : 5}
                         onPageChange={handlePageChange}
-                        marginPagesDisplayed={5}
+                        marginPagesDisplayed={isMobile ? 0 : 5}
                     />
                 </PaginationContainer>
             ) : null}

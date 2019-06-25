@@ -7,6 +7,8 @@ import axios from 'axios';
 import withRedux, { MakeStore } from 'next-redux-wrapper';
 import 'react-toastify/dist/ReactToastify.css';
 import { toast } from 'react-toastify';
+import isMobile from 'ismobilejs';
+
 import { rootReducer } from '@store/rootReducer';
 import { rootSaga } from '@store/rootSaga';
 import { EProductActions } from '@store/products/types';
@@ -16,6 +18,7 @@ import Auth from '@components/Auth';
 import ProductDetails from '@components/ProductDetails';
 import PageView from '@components/PageView';
 import MainLayout from '@layouts/Main';
+import { EAppActions } from '@store/app/types';
 
 const makeStore: MakeStore = (initialState, _options) => {
     const sagaMiddleware = createSagaMiddleware();
@@ -58,8 +61,16 @@ const setDepartments = async (ctx: any) => {
 
 class MyApp extends App {
     static async getInitialProps({ Component, ctx }: any) {
-        await setDepartments(ctx);
-        await setInitialProducts(ctx);
+        if (!process.browser) {
+            await setDepartments(ctx);
+            await setInitialProducts(ctx);
+            // @ts-ignore
+            ctx.store.dispatch({
+                type: EAppActions.SET_IS_MOBILE,
+                isMobile: isMobile(ctx.req.headers['user-agent']).any,
+            });
+        }
+
         const pageProps = Component.getInitialProps ? await Component.getInitialProps(ctx) : {};
         return { pageProps };
     }
