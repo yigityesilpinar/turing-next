@@ -22,7 +22,7 @@ export default class extends Document<{ styleTags?: string }> {
         return (
             <html>
                 <Head>
-                    <meta name="viewport" content="initial-scale=1, width=device-width" />
+                    <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no" />
                     {/* put the styles in the head  */}
                     {this.props.styleTags}
                     <script src="https://js.stripe.com/v3/" />

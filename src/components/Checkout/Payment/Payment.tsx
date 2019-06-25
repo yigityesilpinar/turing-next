@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { ReactStripeElements, CardElement } from 'react-stripe-elements';
 import Router from 'next/router';
+import { animateScroll } from 'react-scroll';
 
 import { IAppState } from '@store/rootReducer';
 import { setCheckoutStep } from '@store/checkout/actions';
@@ -52,9 +53,8 @@ const Payment: React.FC = props => {
         clearTimeout(loaderTimeout);
         setLoading(false);
         if (isMobile) {
-            window.scrollTo({
-                top: 0,
-                left: 0,
+            animateScroll.scrollToTop({
+                smooth: true,
             });
         }
         if (result === 'charge_error') {
