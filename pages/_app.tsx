@@ -7,16 +7,15 @@ import axios from 'axios';
 import withRedux, { MakeStore } from 'next-redux-wrapper';
 import 'react-toastify/dist/ReactToastify.css';
 import { toast } from 'react-toastify';
-
 import { rootReducer } from '@store/rootReducer';
 import { rootSaga } from '@store/rootSaga';
 import { EProductActions } from '@store/products/types';
 import { EDepartmentActions } from '@store/departments/types';
-import MainLayout from '@layouts/Main';
 import Header from '@components/Header';
 import Auth from '@components/Auth';
 import ProductDetails from '@components/ProductDetails';
 import PageView from '@components/PageView';
+import MainLayout from '@layouts/Main';
 
 const makeStore: MakeStore = (initialState, _options) => {
     const sagaMiddleware = createSagaMiddleware();

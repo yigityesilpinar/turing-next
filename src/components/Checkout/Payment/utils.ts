@@ -3,7 +3,10 @@ import checkoutApi from '@api/checkout';
 import { IHandleStripeCharge } from './types';
 
 export const handleStripeCharge = async ({ accessToken, cart_id, stripe }: IHandleStripeCharge) => {
-    let { token } = await stripe!.createToken({});
+    if (!stripe) {
+        return false;
+    }
+    let { token } = await stripe.createToken({});
     if (!token) {
         toast.error('Pleas Fill Payment Details Correctly');
         return false;
@@ -26,7 +29,7 @@ export const handleStripeCharge = async ({ accessToken, cart_id, stripe }: IHand
         toast.error('Ooops sorry sth went wrong with Order details, please try again later!');
         return false;
     }
-    const [chargeRes, chargeErr] = await checkoutApi.stripeCharge(
+    const [, chargeErr] = await checkoutApi.stripeCharge(
         {
             order_id: orderRes.orderId,
             amount: parseInt(orderDetailRes.total_amount.replace('.', ''), 10),
@@ -36,8 +39,8 @@ export const handleStripeCharge = async ({ accessToken, cart_id, stripe }: IHand
         },
         accessToken,
     );
-    if (chargeErr || !chargeRes) {
-        toast.error(chargeErr!.message);
+    if (chargeErr) {
+        toast.error(chargeErr.message);
         return false;
     }
     toast.success('SUCCESSFULLY CHARGED');

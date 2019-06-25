@@ -1,3 +1,4 @@
+import React from 'react';
 import { HashLoader } from 'react-spinners';
 
 import { Container, Heading } from './styled';
