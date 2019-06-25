@@ -22,6 +22,8 @@ class BaseApi {
                 error = e.response.data.error;
             } catch (unknownErr) {
                 error = {
+                    code: 'unknown',
+                    field: 'unknown',
                     message: 'Oops sorry something went wrong, please try again later',
                 };
             }

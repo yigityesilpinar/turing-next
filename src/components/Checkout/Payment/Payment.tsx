@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { ReactStripeElements, CardElement } from 'react-stripe-elements';
+import Router from 'next/router';
 
 import { IAppState } from '@store/rootReducer';
 import { setCheckoutStep } from '@store/checkout/actions';
 import Colors from '@theme/colors';
 import { setCart } from '@store/cart/actions';
+import cartApi from '@api/cart';
 
 import {
     Container,
@@ -30,10 +32,15 @@ const Payment: React.FC = props => {
     const [completed, setCompleted] = useState(false);
     const [loading, setLoading] = useState(false);
     const { customer, accessToken } = useSelector<IAppState, IAppState['customerStore']>(state => state.customerStore);
-    const { cart_id } = useSelector<IAppState, IAppState['cartStore']>(state => state.cartStore);
+    const { cart_id, items } = useSelector<IAppState, IAppState['cartStore']>(state => state.cartStore);
     const currentStep = useSelector<IAppState, IAppState['checoutStore']['step']>(state => state.checoutStore.step);
     const isMobile = useSelector<IAppState, IAppState['appStore']['isMobile']>(state => state.appStore.isMobile);
 
+    const cancel = () => {
+        dispatch(setCart([]));
+        dispatch(setCheckoutStep(1));
+        Router.push('/cart');
+    };
     const handlePay = async () => {
         const { stripe } = props as InjectedProps;
         const loaderTimeout = setTimeout(() => setLoading(true), 500);
@@ -44,6 +51,39 @@ const Payment: React.FC = props => {
         });
         clearTimeout(loaderTimeout);
         setLoading(false);
+        if (result === 'charge_error') {
+            // looks like cart is emptied after error
+            // ADD BACK ITEM TO THE CART
+            let promises: Promise<any>[] = [];
+            items.forEach(item => {
+                for (let i = 0; i < item.quantity; i++) {
+                    promises.push(
+                        cartApi.addToCart({
+                            product_id: item.product_id,
+                            attributes: item.attributes,
+                            cart_id,
+                        }),
+                    );
+                }
+            });
+            try {
+                await Promise.all(promises);
+            } catch (e) {
+                // something went wrong during adding old items the items
+                cancel();
+                return;
+            }
+
+            const [itemsRes, itemsErr] = await cartApi.getItemsInCart(cart_id);
+            if (!itemsRes || !itemsRes.length || itemsErr) {
+                // something went wrong during recovering the items
+                cancel();
+                return;
+            }
+            // recover items
+            dispatch(setCart(itemsRes));
+            return;
+        }
         if (result) {
             dispatch(setCheckoutStep(currentStep + 1));
             dispatch(setCart([]));

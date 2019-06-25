@@ -1,5 +1,7 @@
 import { toast } from 'react-toastify';
+
 import checkoutApi from '@api/checkout';
+
 import { IHandleStripeCharge } from './types';
 
 export const handleStripeCharge = async ({ accessToken, cart_id, stripe }: IHandleStripeCharge) => {
@@ -41,7 +43,7 @@ export const handleStripeCharge = async ({ accessToken, cart_id, stripe }: IHand
     );
     if (chargeErr) {
         toast.error(chargeErr.message);
-        return false;
+        return 'charge_error';
     }
     toast.success('SUCCESSFULLY CHARGED');
     return true;
