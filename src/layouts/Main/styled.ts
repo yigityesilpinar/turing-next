@@ -15,6 +15,7 @@ export const GlobalStyle = createGlobalStyle`
     font-weight: ${({ theme }) => theme.fontWeights.normal};
     color: ${({ theme }) => theme.colors.body};
     line-height: 150%;
+    scroll-behavior: smooth;
   }
 
 `;

@@ -51,6 +51,12 @@ const Payment: React.FC = props => {
         });
         clearTimeout(loaderTimeout);
         setLoading(false);
+        if (isMobile) {
+            window.scrollTo({
+                top: 0,
+                left: 0,
+            });
+        }
         if (result === 'charge_error') {
             // looks like cart is emptied after error
             // ADD BACK ITEM TO THE CART
