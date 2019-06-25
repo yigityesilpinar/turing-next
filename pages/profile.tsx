@@ -1,13 +1,9 @@
 import React from 'react';
-import styled from 'styled-components';
 import Head from 'next/head';
 
-import { LOGO_HEIGHT } from '@config/global';
-
-const Container = styled.div`
-    display: flex;
-    padding-top: ${LOGO_HEIGHT}px;
-`;
+import Container from '@common/PageContainer';
+import SideBar from '@common/SideBar';
+import Content from '@common/Content';
 
 function IndexPage() {
     return (
@@ -15,6 +11,8 @@ function IndexPage() {
             <Head>
                 <title>Profile</title>
             </Head>
+            <SideBar />
+            <Content>Profile Page</Content>
         </Container>
     );
 }

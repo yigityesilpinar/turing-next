@@ -5,6 +5,7 @@ import CommonImage from '@common/Image';
 import CommonText from '@common/Text';
 import CommonH3 from '@common/H3';
 import { reverseBtnMixin } from '@common/Button/styled';
+import { BREAKPOINTS } from '@config/media';
 
 export const Container = styled.div`
     display: flex;
@@ -41,6 +42,9 @@ export const FormElementContainer = styled.div`
     flex-direction: column;
     flex-basis: 45%;
     margin: 20px 0;
+    @media (max-width: ${BREAKPOINTS.MOBILE_MAX}px) {
+        flex-basis: 100%;
+    }
 `;
 
 export const CardWrapper = styled.div<{ completed: boolean }>`
@@ -62,6 +66,9 @@ export const Info = styled(CommonH3)`
     align-items: center;
     margin-right: 20px;
     flex-basis: 45%;
+    @media (max-width: ${BREAKPOINTS.MOBILE_MAX}px) {
+        flex-basis: 100%;
+    }
 `;
 
 export const Completed = styled(CommonH3)<{ completed: boolean }>`

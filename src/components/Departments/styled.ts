@@ -1,10 +1,11 @@
 import styled, { css } from 'styled-components';
 
-import { MARGIN_FROM_SIDEBAR } from '@config/global';
 import CommonLink from '@common/Link';
 
 export const Container = styled.div`
     display: flex;
+    width: 100%;
+    justify-content: space-between;
 `;
 
 export const Link = styled(CommonLink)<IWithActiveProp>`
@@ -19,11 +20,6 @@ export const Link = styled(CommonLink)<IWithActiveProp>`
             background: ${props => props.theme.colors.heading};
         }
     }
-    margin-right: 80px;
-    :first-of-type {
-        margin-left: ${MARGIN_FROM_SIDEBAR}px;
-    }
-
     ${({ active, theme }) =>
         active &&
         css`

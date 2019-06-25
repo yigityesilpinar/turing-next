@@ -1,10 +1,14 @@
 import styled, { css } from 'styled-components';
 
 import CommonH3 from '@common/H3';
+import { BREAKPOINTS } from '@config/media';
 
 export const Container = styled.div`
     display: flex;
     width: 22%;
+    @media (max-width: ${BREAKPOINTS.MOBILE_MAX}px) {
+        width: initial;
+    }
 `;
 
 export const QuantityDisplay = styled(CommonH3)`

@@ -1,6 +1,8 @@
 import styled, { createGlobalStyle } from 'styled-components';
 
 import reset from '@utils/style/reset';
+import { MAX_APP_WIDTH } from '@config/global';
+
 export const GlobalStyle = createGlobalStyle`
   ${reset}
   @import url('https://fonts.googleapis.com/css?family=Open+Sans:400&display=swap');
@@ -20,6 +22,6 @@ export const GlobalStyle = createGlobalStyle`
 export const LayoutContainer = styled.div`
     display: flex;
     flex-direction: column;
-    max-width: 2000px;
+    max-width: ${MAX_APP_WIDTH}px;
     margin: 0 auto;
 `;

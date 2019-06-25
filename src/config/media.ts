@@ -1,0 +1,6 @@
+export enum BREAKPOINTS {
+    MOBILE_MIN = 1,
+    MOBILE_MAX = 767,
+    TABLET_MIN = 768,
+    TABLET_MAX = 1150,
+}

@@ -6,7 +6,6 @@ import CommonText from '@common/Text';
 
 export const Container = styled.div`
     display: flex;
-    flex-basis: 30%;
     justify-content: center;
 `;
 

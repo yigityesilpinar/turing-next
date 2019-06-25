@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { BREAKPOINTS } from '@config/media';
 
 export const Container = styled.div`
     display: flex;
@@ -48,4 +49,13 @@ export const ListContainer = styled.div`
     display: flex;
     flex-basis: 100%;
     flex-wrap: wrap;
+    > * {
+        flex-basis: 30%;
+    }
+    @media (max-width: ${BREAKPOINTS.MOBILE_MAX}px) {
+        justify-content: center;
+        > * {
+            flex-basis: 60%;
+        }
+    }
 `;

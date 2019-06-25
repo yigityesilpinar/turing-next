@@ -1,19 +1,18 @@
-import React, { useEffect, useState } from 'react';
-
-import { Container, Link } from './styled';
+import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+
 import { IAppState } from '@store/rootReducer';
 import { setActiveDepartment } from '@store/departments/actions';
+import useLocationOnly from '@hooks/useLocationOnly';
+
+import { Container, Link } from './styled';
+
 const Departments: React.FC = () => {
     const { departments, active: activeDepartment } = useSelector<IAppState, IAppState['departmentStore']>(
         state => state.departmentStore,
     );
-    const [display, setDisplay] = useState(typeof window !== 'undefined' && window.location.pathname === '/');
+    const display = useLocationOnly('/');
     const dispatch = useDispatch();
-
-    useEffect(() => {
-        setDisplay(window.location.pathname === '/');
-    }, [typeof window !== 'undefined' && window.location.pathname]);
 
     const clickHandler = (department: IDepartment) => (e: React.SyntheticEvent<HTMLAnchorElement>) => {
         e.preventDefault();
