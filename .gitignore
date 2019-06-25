@@ -48,7 +48,7 @@ jspm_packages/
 .node_repl_history
 
 # dotenv environment variables file
-.env
+#.env
 
 
 ### OSX ###
@@ -122,5 +122,4 @@ $RECYCLE.BIN/
 # End of https://www.gitignore.io/api/osx,vim,node,windows,visualstudiocode
 
 ### Custom ###
-.env.*
 .next
