@@ -20,4 +20,6 @@ export const GlobalStyle = createGlobalStyle`
 export const LayoutContainer = styled.div`
     display: flex;
     flex-direction: column;
+    max-width: 2000px;
+    margin: 0 auto;
 `;

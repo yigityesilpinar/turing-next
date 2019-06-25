@@ -1,4 +1,4 @@
-interface IAuthError {
+interface IErrorResponse {
     code: string;
     field: string; //"name, email, password"
     message: string; //'The field(s) are/is required.'

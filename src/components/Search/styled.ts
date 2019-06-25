@@ -6,6 +6,7 @@ import CommonImage from '@common/Image';
 export const Container = styled.div`
     display: flex;
     position: relative;
+    margin-right: 20px;
 `;
 
 export const SearchInput = styled(TextInput)`

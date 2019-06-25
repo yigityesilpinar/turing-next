@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 import authApi from '@api/auth';
 import cartApi from '@api/cart';
 import { getItemFromStorage, removeItemFromStorage } from '@utils/storage';
-import { setCustomer, setToken } from '@store/customer/actions';
+import { setCustomer, setCustomerReady, setToken } from '@store/customer/actions';
 import { setCart, setCartID } from '@store/cart/actions';
 
 const PageView: React.FC = () => {
@@ -20,7 +20,10 @@ const PageView: React.FC = () => {
                 } else {
                     removeItemFromStorage('token');
                 }
+                dispatch(setCustomerReady(true));
             });
+        } else {
+            dispatch(setCustomerReady(true));
         }
         const cartID = getItemFromStorage('cartID');
         if (cartID) {

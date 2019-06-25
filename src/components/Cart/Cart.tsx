@@ -3,15 +3,15 @@ import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 
 import { IAppState } from '@store/rootReducer';
+import { CURRENCY } from '@config/global';
+import cartApi from '@api/cart';
+import { setCart } from '@store/cart/actions';
+import EmptyCart from '@components/EmptyCart';
 
 import { Container, Heading, List, Total, EmptyButton } from './styled';
 import Item from './Item';
 import ListHeader from './ListHeader';
 import Bottom from './Bottom';
-import { CURRENCY } from '@config/global';
-import cartApi from '@api/cart';
-import { setCart } from '@store/cart/actions';
-// import { getTotal } from '@utils/product';
 
 const Cart: React.FC = () => {
     const { cart_id, items } = useSelector<IAppState, IAppState['cartStore']>(state => state.cartStore);
@@ -33,7 +33,13 @@ const Cart: React.FC = () => {
                 }
             });
         }
-    }, [cart_id]);
+    }, [
+        cart_id,
+        items.reduce((acc, item) => {
+            acc += item.quantity;
+            return acc;
+        }, 0),
+    ]);
     const handleClickEmpty = () => {
         cartApi.emptyCart(cart_id).then(([res, err]) => {
             if (res && !err) {
@@ -42,8 +48,7 @@ const Cart: React.FC = () => {
         });
     };
     if (!items.length) {
-        // TODO
-        return <Container>Empty cart</Container>;
+        return <EmptyCart />;
     }
     return (
         <Container>

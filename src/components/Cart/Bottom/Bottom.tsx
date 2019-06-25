@@ -9,7 +9,9 @@ const ListHeader: React.FC = () => {
             <Link href="/">
                 <BackButton>Back to Shop</BackButton>
             </Link>
-            <CheckoutButton>Checkout</CheckoutButton>
+            <Link href="/checkout">
+                <CheckoutButton>Checkout</CheckoutButton>
+            </Link>
         </Container>
     );
 };

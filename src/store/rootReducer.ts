@@ -14,6 +14,8 @@ import { cartReducer } from './cart';
 import { ICartStore } from './cart/types';
 import { attributesReducer } from './attributes';
 import { IAttributesStore } from './attributes/types';
+import { checkoutReducer } from './checkout';
+import { ICheckoutStore } from './checkout/types';
 
 export interface IAppState {
     productStore: IProductsStore;
@@ -23,6 +25,7 @@ export interface IAppState {
     searchStore: ISearchsStore;
     cartStore: ICartStore;
     attributesStore: IAttributesStore;
+    checoutStore: ICheckoutStore;
 }
 
 export const rootReducer = combineReducers<IAppState>({
@@ -33,4 +36,5 @@ export const rootReducer = combineReducers<IAppState>({
     searchStore: searchsReducer,
     cartStore: cartReducer,
     attributesStore: attributesReducer,
+    checoutStore: checkoutReducer,
 });

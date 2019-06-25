@@ -10,7 +10,6 @@ export const cartReducer = (state = initialState, action: TCartActionTypes) => {
     switch (action.type) {
         case ECartActions.SET_CART_ID:
             setItemToStorage('cartID', action.cart_id);
-            console.log(action.cart_id);
             return Object.assign({}, state, { cart_id: action.cart_id });
         case ECartActions.SET_CART:
             return Object.assign({}, state, { items: action.items });

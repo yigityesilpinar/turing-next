@@ -15,7 +15,7 @@ const Login: React.FC<ILogin> = ({ switchAuthMethod, onLoginSuccess }) => {
         password: '',
     });
     const dispatch = useDispatch();
-    const [err, setError] = useState<IAuthError | undefined>(undefined);
+    const [err, setError] = useState<IErrorResponse | undefined>(undefined);
     const hasError = (fieldName: keyof typeof state) => err && err.field.includes(fieldName);
     const setField = (fieldName: keyof typeof state) => (e: React.ChangeEvent<HTMLInputElement>) => {
         if (err) {
@@ -25,7 +25,7 @@ const Login: React.FC<ILogin> = ({ switchAuthMethod, onLoginSuccess }) => {
         setState(currentState => ({ ...currentState, [fieldName]: e.target.value }));
     };
 
-    const handleLoginResponse = ([response, error]: [IAuthResponse?, IAuthError?]) => {
+    const handleLoginResponse = ([response, error]: [IAuthResponse?, IErrorResponse?]) => {
         if (error) {
             setError(error);
             return;

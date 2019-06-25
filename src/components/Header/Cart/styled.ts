@@ -20,4 +20,7 @@ export const ItemCount = styled.span`
     border-radius: 50%;
 `;
 
-export const CartIcon = styled(CommonImage)``;
+export const CartIcon = styled(CommonImage)`
+    width: 20px;
+    height: 20px;
+`;

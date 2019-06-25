@@ -1,0 +1,1 @@
+export { checkoutReducer } from './reducers';

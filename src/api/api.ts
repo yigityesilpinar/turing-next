@@ -11,14 +11,20 @@ class BaseApi {
             const axiosResponse = await axios.request<TResponse>({
                 baseURL,
                 ...rest,
+                timeout: 6000,
             });
             response = axiosResponse.data;
             if (typeof response !== 'object') {
-                // error = getGenericError<TError>();
                 response = undefined;
             }
         } catch (e) {
-            error = e.response.data.error;
+            try {
+                error = e.response.data.error;
+            } catch (unknownErr) {
+                error = {
+                    message: 'Oops sorry something went wrong, please try again later',
+                };
+            }
         }
         return [response, error];
     }

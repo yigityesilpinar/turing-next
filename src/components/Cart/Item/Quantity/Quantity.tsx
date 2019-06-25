@@ -9,7 +9,7 @@ import { Container, QuantityDisplay, Decrease, Increase } from './styled';
 
 const CartItem: React.FC<ICartItem> = ({ quantity, item_id }) => {
     const dispatch = useDispatch();
-    const handleChange = async (newQuantity: typeof quantity) => {
+    const handleQuantityChange = async (newQuantity: typeof quantity) => {
         const [res, err] = await cartApi.updateItem({
             item_id,
             quantity: newQuantity,
@@ -25,13 +25,13 @@ const CartItem: React.FC<ICartItem> = ({ quantity, item_id }) => {
             toast.error('oops sorry sth went wrong!');
         }
     };
-    const handleIncrease = () => handleChange(quantity + 1);
+    const handleIncrease = () => handleQuantityChange(quantity + 1);
 
     const handleDecrease = () => {
         if (quantity < 2) {
             return;
         }
-        handleChange(quantity - 1);
+        handleQuantityChange(quantity - 1);
     };
 
     return (

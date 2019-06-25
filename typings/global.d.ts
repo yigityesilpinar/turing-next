@@ -11,6 +11,7 @@ interface Window {
     fbAsyncInit: any;
     FB: any;
     onloadCallback: Function;
+    Stripe: any;
 }
 
 declare var window: Window;
@@ -55,4 +56,8 @@ declare module '*.svg' {
 
 interface IWithActiveProp {
     active?: boolean;
+}
+
+interface IWithSizeProp {
+    size: number;
 }
