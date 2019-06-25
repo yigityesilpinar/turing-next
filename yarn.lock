@@ -898,11 +898,6 @@
   resolved "https://registry.yarnpkg.com/@types/ismobilejs/-/ismobilejs-0.4.1.tgz#d8bf8b139d3e47ae6afa1d4bca57bbc5a786cc9e"
   integrity sha512-h7d/EWxHjRNY/VuIWBsciHahuIRmSVvtK+34cal0m/UBN75wcuEXxzfn91PRr7iyyJqMccW+oiwp6T+T9khamQ==
 
-"@types/lodash@^4.14.134":
-  version "4.14.134"
-  resolved "https://registry.yarnpkg.com/@types/lodash/-/lodash-4.14.134.tgz#9032b440122db3a2a56200e91191996161dde5b9"
-  integrity sha512-2/O0khFUCFeDlbi7sZ7ZFRCcT812fAeOLm7Ev4KbwASkZ575TDrDcY7YyaoHdTOzKcNbfiwLYZqPmoC4wadrsw==
-
 "@types/next-server@*":
   version "8.1.1"
   resolved "https://registry.yarnpkg.com/@types/next-server/-/next-server-8.1.1.tgz#1570d5079cf7e82e77f48826024c6e2797cddda7"

@@ -50,4 +50,4 @@ export const AddToCart = styled(CommonButton)`
     margin-top: 20px;
 `;
 
-export const Modal = styled(CommonModal)``;
+export const Modal = CommonModal;

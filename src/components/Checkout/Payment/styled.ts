@@ -58,7 +58,7 @@ export const CardWrapper = styled.div<{ completed: boolean }>`
               `}
 `;
 
-export const Label = styled(CommonText)``;
+export const Label = CommonText;
 
 export const Info = styled(CommonH3)`
     display: flex;

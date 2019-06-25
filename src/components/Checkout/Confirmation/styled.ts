@@ -26,7 +26,7 @@ export const AddressContainer = styled.div`
     width: 30%;
     flex-direction: column;
 `;
-export const Address = styled(CommonText)``;
+export const Address = CommonText;
 
 export const BottomContainer = styled.div`
     display: flex;

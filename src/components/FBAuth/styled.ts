@@ -22,4 +22,4 @@ export const Button = styled.button`
     }
 `;
 
-export const Text = styled(CommonText)``;
+export const Text = CommonText;

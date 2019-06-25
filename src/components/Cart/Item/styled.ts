@@ -66,7 +66,7 @@ export const SubTotal = styled(Price)`
     }
 `;
 
-export const Text = styled(CommonText)``;
+export const Text = CommonText;
 
 export const Image = styled(CommonImage)`
     height: 96px;

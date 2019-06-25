@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 import CommonModal from '@common/Modal';
 
-export const Modal = styled(CommonModal)``;
+export const Modal = CommonModal;
 
 export const Container = styled.div`
     display: flex;

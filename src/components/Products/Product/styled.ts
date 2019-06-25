@@ -21,7 +21,7 @@ export const Content = styled.div`
 export const Image = styled(CommonImage)`
     width: 120px;
 `;
-export const Name = styled(CommonH3)``;
+export const Name = CommonH3;
 export const Description = styled(CommonText)`
     width: 80%;
 `;

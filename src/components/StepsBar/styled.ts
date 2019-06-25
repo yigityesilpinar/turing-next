@@ -43,4 +43,4 @@ export const LabelsContainer = styled.div`
     margin-top: 20px;
 `;
 
-export const Label = styled(CommonH3)``;
+export const Label = CommonH3;

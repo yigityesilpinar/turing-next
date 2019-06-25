@@ -14,7 +14,6 @@
   },
   "dependencies": {
     "@types/ismobilejs": "^0.4.1",
-    "@types/lodash": "^4.14.134",
     "@types/next": "8.0.0",
     "@types/react": "^16.8.21",
     "@types/react-dom": "^16.8.4",
@@ -37,7 +36,6 @@
     "eslint-plugin-react": "^7.13.0",
     "fork-ts-checker-webpack-plugin": "^1.3.7",
     "ismobilejs": "^0.5.2",
-    "lodash": "^4.17.11",
     "moment": "^2.24.0",
     "next": "8.0.0",
     "next-redux-wrapper": "^3.0.0-alpha.3",

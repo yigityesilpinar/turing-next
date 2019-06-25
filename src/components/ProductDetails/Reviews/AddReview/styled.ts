@@ -21,4 +21,4 @@ export const TextArea = styled(CommonTextArea)`
     margin-bottom: 10px;
 `;
 
-export const Button = styled(CommonButton)``;
+export const Button = CommonButton;

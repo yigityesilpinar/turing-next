@@ -23,7 +23,7 @@ export const SubmitBtn = styled(CommonButton)`
     margin-top: 10px;
 `;
 
-export const Heading = styled(CommonH2)``;
+export const Heading = CommonH2;
 
 export const AuthLink = styled(CommonText)`
     color: ${({ theme }) => theme.colors.active};

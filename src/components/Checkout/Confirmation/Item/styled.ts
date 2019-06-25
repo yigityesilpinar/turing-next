@@ -19,5 +19,5 @@ export const Price = styled(CommonH2)`
     color: ${({ theme }) => theme.colors.active};
 `;
 
-export const Name = styled(CommonText)``;
-export const Quantity = styled(CommonText)``;
+export const Name = CommonText;
+export const Quantity = CommonText;

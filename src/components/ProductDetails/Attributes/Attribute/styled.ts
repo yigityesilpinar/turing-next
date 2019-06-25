@@ -11,7 +11,7 @@ export const SelectContainer = styled.div`
     display: flex;
 `;
 
-export const Name = styled(CommonH3)``;
+export const Name = CommonH3;
 
 const useThemeColor = (color: string) =>
     Colors.hasOwnProperty(color.toLowerCase()) ? (Colors as any)[color.toLowerCase()] : color;
